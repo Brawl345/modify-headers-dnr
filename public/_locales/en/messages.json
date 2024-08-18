@@ -1,0 +1,98 @@
+{
+  "extensionName": {
+    "message": "Modify Headers DNR"
+  },
+  "extensionDescription": {
+    "message": "Modify request and response headers through the DeclarativeNetRequest API"
+  },
+  "optionsPageTitle": {
+    "message": "Options"
+  },
+  "optionEnabled": {
+    "message": "Enabled"
+  },
+  "optionUrlPattern": {
+    "message": "URL Pattern"
+  },
+  "optionUrlPatternDescription": {
+    "message": "An ASCII-only regular expression to filter network request URLs. URLs are provided in punycode format (for internationalized domains) with non-ASCII characters percent-encoded in UTF-8."
+  },
+  "optionAction": {
+    "message": "Action"
+  },
+  "optionActionDescription": {
+    "message": "The operation to be performed on the header."
+  },
+  "optionActionChromeDescription": {
+    "message": "In Chromium-based browsers, \"append\" is supported for the following request headers: Accept, Accept-Encoding, Accept-Language, Access-Control-Request-Headers, Cache-Control, Connection, Content-Language, Cookie, Forwarded, If-Match, If-None-Match, Keep-Alive, Range, Te, Trailer, Transfer-Encoding, Upgrade, Via, Want-Digest, X-Forwarded-For."
+  },
+  "optionActionValueSet": {
+    "message": "Set"
+  },
+  "optionActionValueAppend": {
+    "message": "Append"
+  },
+  "optionActionValueRemove": {
+    "message": "Remove"
+  },
+  "optionHeaderField": {
+    "message": "Header Field"
+  },
+  "optionHeaderValue": {
+    "message": "Header Value"
+  },
+  "optionPriority": {
+    "message": "Priority"
+  },
+  "optionPriorityDescription": {
+    "message": "Priority in which the rules will be applied. The lower the number, the higher the priorty. Default is 1."
+  },
+  "optionApplyOn": {
+    "message": "Apply on"
+  },
+  "optionApplyOnValueRequest": {
+    "message": "Request"
+  },
+  "optionApplyOnValueResponse": {
+    "message": "Response"
+  },
+  "optionAddRule": {
+    "message": "Add Rule"
+  },
+  "optionSave": {
+    "message": "Save Rules"
+  },
+  "errFilterRequired": {
+    "message": "URL Pattern is required."
+  },
+  "errFilterInvalid": {
+    "message": "URL Pattern must be valid regex."
+  },
+  "errOperationInvalid": {
+    "message": "Action is invalid."
+  },
+  "errFieldRequired": {
+    "message": "Header Field is required."
+  },
+  "errValueRequired": {
+    "message": "Header Value is required."
+  },
+  "errPriorityTooLow": {
+    "message": "Priority must be greater than 1."
+  },
+  "errPriorityInvalid": {
+    "message": "Priority is invalid."
+  },
+  "errApplyOnInvalid": {
+    "message": "Apply on is invalid."
+  },
+  "errTooManyRules": {
+    "message": "Too many rules. Note that other extensions may add rules as well."
+  },
+  "successSaveOptions": {
+    "message": "Rules saved successfully!"
+  },
+  "errorWhileSaving": {
+    "message": "An unknown error occurred while saving."
+  }
+}

@@ -1,0 +1,89 @@
+@import "bootstrap/scss/functions";
+
+$enable-gradients: true;
+
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/utilities/api";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/grid";
+
+@import "bootstrap/scss/helpers/colored-links";
+
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/tables";
+
+.pointer {
+  cursor: pointer;
+}
+
+.col-1_5 {
+  width: 12%;
+}
+
+.col-2_5 {
+  width: 20%;
+}
+
+#onOffSwitch {
+  transform: scale(1.5);
+}
+
+
+@include media-breakpoint-down(md) {
+
+  .btn-md-down-w-10 {
+    width: 100%;
+  }
+
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table tr {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .9em;
+    text-align: right;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+
+  table td input[type="checkbox"] {
+    margin-right: 5px;
+    transform: scale(1.2);
+  }
+}
