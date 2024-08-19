@@ -145,7 +145,7 @@ const save = async () => {
     {/if}
 
     <div class="row">
-        <div class="col text-center">
+        <div class="col text-end">
             <button
                     class="btn btn-primary btn-md-down-w-10"
                     on:click={options.addRule}

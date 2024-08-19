@@ -1,4 +1,6 @@
 <script lang="ts">
+import Dropdown from 'bootstrap/js/dist/dropdown';
+import { onMount } from 'svelte';
 import { fly } from 'svelte/transition';
 import { ApplyOn, type FilterRule, type RuleError } from '../../types';
 import { getMessage } from '../../utils';
@@ -19,9 +21,16 @@ const onChangeOperation = (
     rule.value = '';
   }
 };
+
+onMount(async () => {
+  for (const dropdownNode of document.querySelectorAll(
+    '[data-bs-toggle="dropdown"]',
+  ))
+    new Dropdown(dropdownNode);
+});
 </script>
 
-<tr transition:fly>
+<tr transition:fly={{duration: 200}}>
 
     <td class="align-middle" data-label={getMessage('optionEnabled')}>
         <div class="form-check form-switch d-flex justify-content-end">
@@ -126,12 +135,16 @@ const onChangeOperation = (
     </td>
 
     <td>
-        <button
-                class="btn btn-xl-sm btn-outline-danger"
-                on:click={() => options.removeRule(index)}
-                type="button"
-        >❌
-        </button>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ⚙
+            </button>
+            <ul class="dropdown-menu">
+                <li><button type="button" on:click={() => options.duplicateRule(index)} class="dropdown-item">📄 {getMessage('optionDuplicate')}</button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button type="button" on:click={() => options.removeRule(index)} class="dropdown-item">❌ {getMessage('optionRemove')}</button></li>
+            </ul>
+        </div>
     </td>
 
 </tr>

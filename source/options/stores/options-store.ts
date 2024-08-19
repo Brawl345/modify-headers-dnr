@@ -21,12 +21,14 @@ const createStore = () => {
         ...previous,
         rules: previous.rules.filter((_, i) => i !== indexToRemove),
       })),
-    resetRules: () =>
+    duplicateRule: (indexToDuplicate: number) =>
       update((previous) => ({
         ...previous,
-        rules: defaultOptions.rules.map((p) => ({
-          ...p,
-        })),
+        rules: [
+          ...previous.rules.slice(0, indexToDuplicate + 1),
+          structuredClone(previous.rules[indexToDuplicate]),
+          ...previous.rules.slice(indexToDuplicate + 1),
+        ],
       })),
     loadFromStorage: async () => set(await getOptions()),
   };

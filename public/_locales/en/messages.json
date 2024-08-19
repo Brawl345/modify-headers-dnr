@@ -56,6 +56,12 @@
   "optionApplyOnValueResponse": {
     "message": "Response"
   },
+  "optionDuplicate": {
+    "message": "Duplicate"
+  },
+  "optionRemove": {
+    "message": "Remove"
+  },
   "optionAddRule": {
     "message": "Add Rule"
   },
