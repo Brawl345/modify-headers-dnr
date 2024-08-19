@@ -223,6 +223,9 @@ onMount(async () => {
                 </a>
                 <p>{getMessage('optionPriorityHelp')}</p>
 
+                <h2 class="fs-3">{getMessage('optionApplyOn')}</h2>
+                <p>{getMessage('optionApplyOnHelp')}</p>
+
                 <a class="link-secondary"
                    href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/ResourceType"
                    target="_blank">

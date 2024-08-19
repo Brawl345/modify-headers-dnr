@@ -53,6 +53,9 @@
   "optionApplyOn": {
     "message": "Apply on"
   },
+  "optionApplyOnHelp": {
+    "message": "Where this rule should be applied on - request or response. Note that modified response headers WON'T be shown in the network tab of the devtools but they will still be applied (you can check it by e.g. modifying the Content-Security-Policy)."
+  },
   "optionResourceTypes": {
     "message": "Resource Types"
   },
