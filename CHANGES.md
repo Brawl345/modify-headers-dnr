@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add note that modified response headers won't be shown in the browser devtools
+
 ## v2.0.0
 
 - Completely reworked design
