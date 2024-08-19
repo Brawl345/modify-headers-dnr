@@ -108,11 +108,12 @@ const save = async () => {
 
     alert.success(getMessage('successSaveOptions'));
     setTimeout(() => alert.hide(), 3000);
-  } catch {
+  } catch (e) {
     if (chrome.runtime.lastError?.message) {
       console.error(chrome.runtime.lastError?.message);
       alert.error(chrome.runtime.lastError?.message);
     } else {
+      console.error(e);
       alert.error(getMessage('errorWhileSaving'));
     }
   }
