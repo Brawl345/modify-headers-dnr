@@ -11,6 +11,7 @@ export interface FilterRule {
   value: string;
   priority: number;
   applyOn: ApplyOn;
+  resourceTypes: chrome.declarativeNetRequest.ResourceType[];
 }
 
 export interface Options {
@@ -26,4 +27,5 @@ export interface RuleError {
   value?: string;
   priority?: string;
   applyOn?: string;
+  resourceTypes?: string;
 }

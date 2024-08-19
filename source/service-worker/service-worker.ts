@@ -20,6 +20,29 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 
     await chrome.runtime.openOptionsPage();
   }
+
+  if (details.reason === 'update') {
+    const options = await getOptions();
+
+    let migrationRan = false;
+
+    // v2: Added ResourceTypes
+    if (options.format === 1) {
+      console.info('MIGRATION: 1 => 2');
+      options.format = 2;
+      for (const rule of options.rules) {
+        rule.resourceTypes = [
+          chrome.declarativeNetRequest.ResourceType.MAIN_FRAME,
+        ];
+      }
+      migrationRan = true;
+    }
+
+    if (migrationRan) {
+      console.info('MIGRATION: DONE');
+      await chrome.storage.sync.set(options);
+    }
+  }
 });
 
 chrome.action.onClicked.addListener(() => chrome.runtime.openOptionsPage());

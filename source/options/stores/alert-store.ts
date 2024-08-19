@@ -14,8 +14,14 @@ function createStore() {
 
   return {
     subscribe,
-    success: (message: string) => set({ variant: 'success', message }),
-    error: (message: string) => set({ variant: 'danger', message }),
+    success: (message: string) => {
+      set({ variant: 'success', message });
+      window.scrollTo(0, 0);
+    },
+    error: (message: string) => {
+      set({ variant: 'danger', message });
+      window.scrollTo(0, 0);
+    },
     hide: () => set({ variant: null, message: null }),
   };
 }

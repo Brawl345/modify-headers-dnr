@@ -12,10 +12,14 @@ const createStore = () => {
     subscribe,
     resetAll: () => set(structuredClone(defaultOptions)),
     addRule: () =>
-      update((previous) => ({
-        ...previous,
-        rules: [...previous.rules, { ...newRule }],
-      })),
+      update((previous) => {
+        const updatedOptions = {
+          ...previous,
+          rules: [...previous.rules, { ...newRule }],
+        };
+        setTimeout(() => window.scrollTo(0, document.body.scrollHeight), 0);
+        return updatedOptions;
+      }),
     removeRule: (indexToRemove: number) =>
       update((previous) => ({
         ...previous,

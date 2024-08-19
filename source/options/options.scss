@@ -23,68 +23,36 @@ $enable-gradients: true;
 @import "bootstrap/scss/card";
 @import "bootstrap/scss/close";
 @import "bootstrap/scss/dropdown";
-@import "bootstrap/scss/tables";
+@import "bootstrap/scss/modal";
 
-.pointer {
-  cursor: pointer;
+.normal-cursor {
+  cursor: default;
 }
 
-.col-1_5 {
-  width: 12%;
+.floating-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  gap: 10px;
 }
 
-.col-2_5 {
-  width: 20%;
-}
+@include media-breakpoint-down(md) {
+  #extensionName {
+    margin-top: 80px;
+  }
 
-#onOffSwitch {
-  transform: scale(1.5);
-}
-
-
-@include media-breakpoint-down(lg) {
+  .btn-md-down-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+  }
 
   .btn-md-down-w-10 {
     width: 100%;
-  }
-
-  table {
-    border: 0;
-  }
-
-  table caption {
-    font-size: 1.3em;
-  }
-
-  table thead {
-    display: none;
-  }
-
-  table tr {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    margin-bottom: .625em;
-  }
-
-  table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .9em;
-    text-align: right;
-  }
-
-  table td::before {
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-  }
-
-  table td:last-child {
-    border-bottom: 0;
-  }
-
-  table td input[type="checkbox"] {
-    margin-right: 5px;
-    transform: scale(1.2);
   }
 }

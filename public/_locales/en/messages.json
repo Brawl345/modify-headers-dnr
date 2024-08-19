@@ -14,17 +14,20 @@
   "optionUrlPattern": {
     "message": "URL Pattern"
   },
-  "optionUrlPatternDescription": {
+  "optionUrlPatternHelp": {
     "message": "An ASCII-only regular expression to filter network request URLs. URLs are provided in punycode format (for internationalized domains) with non-ASCII characters percent-encoded in UTF-8."
   },
   "optionAction": {
     "message": "Action"
   },
-  "optionActionDescription": {
+  "optionActionHelp": {
     "message": "The operation to be performed on the header."
   },
-  "optionActionChromeDescription": {
+  "optionActionChromeHelp": {
     "message": "In Chromium-based browsers, \"append\" is supported for the following request headers: Accept, Accept-Encoding, Accept-Language, Access-Control-Request-Headers, Cache-Control, Connection, Content-Language, Cookie, Forwarded, If-Match, If-None-Match, Keep-Alive, Range, Te, Trailer, Transfer-Encoding, Upgrade, Via, Want-Digest, X-Forwarded-For."
+  },
+  "optionHelpClose": {
+    "message": "Close"
   },
   "optionActionValueSet": {
     "message": "Set"
@@ -44,11 +47,89 @@
   "optionPriority": {
     "message": "Priority"
   },
-  "optionPriorityDescription": {
+  "optionPriorityHelp": {
     "message": "Priority in which the rules will be applied. The lower the number, the higher the priorty. Default is 1."
   },
   "optionApplyOn": {
     "message": "Apply on"
+  },
+  "optionResourceTypes": {
+    "message": "Resource Types"
+  },
+  "optionResourceTypesHelp": {
+    "message": "The resource types to which the rule will be applied."
+  },
+  "optionResourceTypesValue_MAIN_FRAME": {
+    "message": "Main Frame"
+  },
+  "optionResourceTypesValue_SUB_FRAME": {
+    "message": "Sub Frame"
+  },
+  "optionResourceTypesValue_STYLESHEET": {
+    "message": "Stylesheet"
+  },
+  "optionResourceTypesValue_SCRIPT": {
+    "message": "Script"
+  },
+  "optionResourceTypesValue_IMAGE": {
+    "message": "Image"
+  },
+  "optionResourceTypesValue_IMAGESET": {
+    "message": "Image Set"
+  },
+  "optionResourceTypesValue_FONT": {
+    "message": "Font"
+  },
+  "optionResourceTypesValue_OBJECT": {
+    "message": "Object"
+  },
+  "optionResourceTypesValue_XMLHTTPREQUEST": {
+    "message": "XMLHttpRequest (AJAX)"
+  },
+  "optionResourceTypesValue_PING": {
+    "message": "Ping"
+  },
+  "optionResourceTypesValue_CSP_REPORT": {
+    "message": "CSP Report"
+  },
+  "optionResourceTypesValue_MEDIA": {
+    "message": "Media"
+  },
+  "optionResourceTypesValue_WEBSOCKET": {
+    "message": "WebSocket"
+  },
+  "optionResourceTypesValue_OTHER": {
+    "message": "Other"
+  },
+  "optionResourceTypesValue_OBJECT_SUBREQUEST": {
+    "message": "Object Subrequest"
+  },
+  "optionResourceTypesValue_XSLT": {
+    "message": "XSLT"
+  },
+  "optionResourceTypesValue_BEACON": {
+    "message": "Beacon"
+  },
+  "optionResourceTypesValue_XML_DTD": {
+    "message": "XML DTD"
+  },
+  "optionResourceTypesValue_WEB_MANIFEST": {
+    "message": "Web Manifest"
+  },
+  "optionResourceTypesValue_SPECULATIVE": {
+    "message": "Speculative"
+  },
+  "optionResourceTypesValue_WEBBUNDLE": {
+    "message": "Web Bundle"
+  },
+  "optionResourceTypesValue_WEBTRANSPORT": {
+    "message": "Web Transport"
+  },
+  "optionResourceTypesSelectAll": {
+    "message": "Select All"
+  },
+  "optionResourceTypesSelectNone": {
+    "message": "Select None"
   },
   "optionApplyOnValueRequest": {
     "message": "Request"
@@ -66,7 +147,10 @@
     "message": "Add Rule"
   },
   "optionSave": {
-    "message": "Save Rules"
+    "message": "Save"
+  },
+  "optionHelp": {
+    "message": "Help"
   },
   "errFilterRequired": {
     "message": "URL Pattern is required."
@@ -91,6 +175,12 @@
   },
   "errApplyOnInvalid": {
     "message": "Apply on is invalid."
+  },
+  "errResourceTypesRequired": {
+    "message": "At least one Resource Type is required."
+  },
+  "errResourceTypesInvalid": {
+    "message": "Resource Types is invalid."
   },
   "errTooManyRules": {
     "message": "Too many rules. Note that other extensions may add rules as well."

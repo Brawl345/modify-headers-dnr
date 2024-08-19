@@ -47,8 +47,7 @@ export const constructNewRules = (
         id: index + 1,
         condition: {
           regexFilter: rule.filter,
-          // TODO: Make this customizable
-          resourceTypes: [chrome.declarativeNetRequest.ResourceType.MAIN_FRAME],
+          resourceTypes: rule.resourceTypes,
         },
         action: {
           type: chrome.declarativeNetRequest.RuleActionType.MODIFY_HEADERS,
@@ -64,3 +63,20 @@ export const constructNewRules = (
 export const isFirefox =
   // @ts-ignore
   typeof window !== 'undefined' && window.browser && browser.runtime;
+
+export const validResourceTypes = new Set(
+  Object.values(chrome.declarativeNetRequest.ResourceType),
+);
+
+export const validHeaderOperations = new Set(
+  Object.values(chrome.declarativeNetRequest.HeaderOperation),
+);
+
+// always list MAIN_FRAME first
+export const resourceTypes = [
+  ['MAIN_FRAME', chrome.declarativeNetRequest.ResourceType.MAIN_FRAME],
+  ...Object.entries(chrome.declarativeNetRequest.ResourceType).filter(
+    ([, value]) =>
+      value !== chrome.declarativeNetRequest.ResourceType.MAIN_FRAME,
+  ),
+];

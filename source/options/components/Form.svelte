@@ -1,14 +1,19 @@
 <script lang="ts">
+import Modal from 'bootstrap/js/dist/modal';
+import { flip } from 'svelte/animate';
 import { fly } from 'svelte/transition';
 import {
   MAX_NUMBER_OF_RULES,
   constructNewRules,
   getMessage,
   isBlank,
+  isFirefox,
   isValidRegex,
+  validResourceTypes,
 } from '../../utils.js';
 import { alert } from '../stores/alert-store';
 
+import { onMount } from 'svelte';
 import { ApplyOn, type RuleError } from '../../types';
 import { options } from '../stores/options-store';
 import Rule from './Rule.svelte';
@@ -39,11 +44,9 @@ const save = async () => {
 
     // Operation
     if (
-      ![
-        chrome.declarativeNetRequest.HeaderOperation.SET,
-        chrome.declarativeNetRequest.HeaderOperation.APPEND,
-        chrome.declarativeNetRequest.HeaderOperation.REMOVE,
-      ].includes(rule.operation)
+      !Object.values(chrome.declarativeNetRequest.HeaderOperation).includes(
+        rule.operation,
+      )
     ) {
       ruleError.operation = getMessage('errOperationInvalid');
     }
@@ -74,6 +77,16 @@ const save = async () => {
       ruleError.applyOn = getMessage('errApplyOnInvalid');
     }
 
+    // ResourceTypes
+    if (rule.resourceTypes.length === 0) {
+      ruleError.resourceTypes = getMessage('errResourceTypesRequired');
+    }
+
+    if (rule.resourceTypes.some((type) => !validResourceTypes.has(type))) {
+      ruleError.resourceTypes = getMessage('errResourceTypesInvalid');
+    }
+
+    // Validation END
     if (Object.keys(ruleError).length !== 0) {
       ruleErrors[index] = ruleError;
     }
@@ -81,6 +94,17 @@ const save = async () => {
 
   if (Object.keys(ruleErrors).length !== 0) {
     console.error(ruleErrors);
+
+    setTimeout(() => {
+      const firstErrorElement = document.querySelector('.invalid-feedback');
+      if (firstErrorElement) {
+        firstErrorElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+    }, 0);
+
     return;
   }
 
@@ -118,45 +142,26 @@ const save = async () => {
     }
   }
 };
+
+onMount(async () => {
+  for (const modalNode of document.querySelectorAll('[data-bs-toggle="modal"]'))
+    new Modal(modalNode);
+});
 </script>
 
 <form on:submit|preventDefault={save}>
-    {#if $options.rules.length > 0}
-        <table class="table" transition:fly={{ duration: 200 }}>
-            <thead>
-            <tr>
-                <th class="col" scope="col"></th>
-                <th class="col-3" scope="col">{getMessage('optionUrlPattern')}</th>
-                <th class="col-1_5" scope="col">{getMessage('optionAction')}</th>
-                <th class="col-2" scope="col">{getMessage('optionHeaderField')}</th>
-                <th class="col-2_5" scope="col">{getMessage('optionHeaderValue')}</th>
-                <th class="col-1" scope="col">{getMessage('optionPriority')}</th>
-                <th class="col-1_5" scope="col">{getMessage('optionApplyOn')}</th>
-                <th class="col" scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
 
-            {#each $options.rules as rule, index (rule)}
-                <Rule {index} {rule} error={ruleErrors[index]}/>
-            {/each}
-            </tbody>
-        </table>
-    {/if}
-
-    <div class="row">
-        <div class="col text-end">
-            <button
-                    class="btn btn-primary btn-md-down-w-10"
-                    on:click={options.addRule}
-                    type="button"
-            >
-                {getMessage('optionAddRule')}
-            </button>
-        </div>
+    <div class="floating-buttons">
+        <button type="button" class="btn btn-secondary btn-lg btn-md-down-circle" data-bs-toggle="modal" data-bs-target="#helpModal">
+            <span class="fw-bold">?</span> <span class="d-none d-md-inline-block">&nbsp;&nbsp;{getMessage('optionHelp')}</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-lg btn-md-down-circle" on:click={options.addRule}>
+            <span class="fw-bold">+</span> <span class="d-none d-md-inline-block">&nbsp;&nbsp;{getMessage('optionAddRule')}</span>
+        </button>
+        <button type="submit" class="btn btn-success btn-lg btn-md-down-circle">
+            💾<span class="d-none d-md-inline-block">&nbsp;&nbsp;{getMessage('optionSave')}</span>
+        </button>
     </div>
-
-    <hr/>
 
     {#if $alert.variant !== null}
         <div class="row mt-3" transition:fly>
@@ -179,12 +184,55 @@ const save = async () => {
         </div>
     {/if}
 
-    <div class="row">
-        <div class="col text-end">
-            <button class="btn btn-success btn-md-down-w-10" type="submit">
-                {getMessage('optionSave')}
-            </button>
+    {#each $options.rules as rule, index (rule)}
+        <div animate:flip={{ duration: (d) => 30 * Math.sqrt(d) }}>
+          <Rule {index} {rule} error={ruleErrors[index]}/>
+        </div>
+    {/each}
+</form>
+
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-md-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="helpModalLabel">{getMessage('optionHelp')}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label={getMessage('optionHelpClose')}></button>
+            </div>
+            <div class="modal-body">
+                <a class="link-secondary"
+                   href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/RuleCondition#regexfilter"
+                   target="_blank">
+                    <h2 class="fs-3">{getMessage('optionUrlPattern')}</h2>
+                </a>
+                <p>{getMessage('optionUrlPatternHelp')}</p>
+
+                <a class="link-secondary"
+                   href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/ModifyHeaderInfo"
+                   target="_blank">
+                    <h2 class="fs-3">{getMessage('optionAction')}</h2>
+                </a>
+                <p>{getMessage('optionActionHelp')}</p>
+                {#if !isFirefox}
+                    <p>{getMessage('optionActionChromeHelp')}</p>
+                {/if}
+
+                <a class="link-secondary"
+                   href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest#matching_precedents"
+                   target="_blank">
+                    <h2 class="fs-3">{getMessage('optionPriority')}</h2>
+                </a>
+                <p>{getMessage('optionPriorityHelp')}</p>
+
+                <a class="link-secondary"
+                   href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/declarativeNetRequest/ResourceType"
+                   target="_blank">
+                    <h2 class="fs-3">{getMessage('optionResourceTypes')}</h2>
+                </a>
+                <p>{getMessage('optionResourceTypesHelp')}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{getMessage('optionHelpClose')}</button>
+            </div>
         </div>
     </div>
-
-</form>
+</div>
