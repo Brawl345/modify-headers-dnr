@@ -30,7 +30,7 @@ onMount(async () => {
 });
 </script>
 
-<tr transition:fly={{duration: 200}}>
+<tr transition:fly={{ duration: 200 }}>
 
     <td class="align-middle" data-label={getMessage('optionEnabled')}>
         <div class="form-check form-switch d-flex justify-content-end">

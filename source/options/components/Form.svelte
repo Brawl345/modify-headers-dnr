@@ -122,7 +122,7 @@ const save = async () => {
 
 <form on:submit|preventDefault={save}>
     {#if $options.rules.length > 0}
-        <table class="table">
+        <table class="table" transition:fly={{ duration: 200 }}>
             <thead>
             <tr>
                 <th class="col" scope="col"></th>
