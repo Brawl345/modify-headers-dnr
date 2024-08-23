@@ -49,6 +49,7 @@ export const constructNewRules = (
           regexFilter: rule.filter,
           resourceTypes: rule.resourceTypes,
         },
+        priority: rule.priority,
         action: {
           type: chrome.declarativeNetRequest.RuleActionType.MODIFY_HEADERS,
           requestHeaders:
