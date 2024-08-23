@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Add note that modified response headers won't be shown in the browser devtools
+- Fix priority not getting applied
 
 ## v2.0.0
 
