@@ -1,5 +1,6 @@
 import '../polyfills';
 import { getOptions } from '../storage';
+import type { ApplyOn } from '../types';
 import { constructNewRules } from '../utils';
 
 chrome.runtime.onInstalled.addListener(async (details) => {
@@ -34,6 +35,20 @@ chrome.runtime.onInstalled.addListener(async (details) => {
         rule.resourceTypes = [
           chrome.declarativeNetRequest.ResourceType.MAIN_FRAME,
         ];
+      }
+      migrationRan = true;
+    }
+
+    // v3:
+    //  - ApplyOn as array
+    //  - Added ActionType
+    if (options.format === 2) {
+      console.info('MIGRATION: 2 => 3');
+      options.format = 3;
+      for (const rule of options.rules) {
+        rule.actionType =
+          chrome.declarativeNetRequest.RuleActionType.MODIFY_HEADERS;
+        rule.applyOn = [rule.applyOn as unknown as ApplyOn];
       }
       migrationRan = true;
     }

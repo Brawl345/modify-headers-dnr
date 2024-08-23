@@ -127,19 +127,31 @@ const selectNoResourceTypes = () => {
             </div>
 
             <div class="col-md-3">
-                <label for={`applyOn_${index}`} class="form-label fw-light">{getMessage('optionApplyOn')}</label>
-                <select
-                    aria-describedby={`applyOn_${index}_feedback`}
-                    bind:value={rule.applyOn}
-                    class="form-select"
-                    class:is-invalid={error?.applyOn}
-                    id={`applyOn_${index}`}
-                    name="applyOn"
-                >
-                    <option value={ApplyOn.REQUEST}>{getMessage('optionApplyOnValueRequest')}</option>
-                    <option value={ApplyOn.RESPONSE}>{getMessage('optionApplyOnValueResponse')}</option>
-                </select>
-                <InputError error={error?.operation} id={`applyOn_${index}_feedback`}/>
+                <span class="d-block form-label fw-light normal-cursor">{getMessage('optionApplyOn')}</span>
+
+                <div class="d-flex flex-wrap">
+                    {#each Object.entries(ApplyOn) as [key, value]}
+                        <div class="form-check me-3 mb-2">
+                            <input
+                                    id={`applyOn_${index}_${key}`}
+                                    class="form-check-input"
+                                    class:is-invalid={error?.applyOn}
+                                    type="checkbox"
+                                    bind:group={rule.applyOn}
+                                    value={value}
+                                    checked={rule.applyOn.includes(value)}
+                                    aria-describedby={`applyOn_${index}_feedback`}
+                            >
+                            <label class="form-check-label" for={`applyOn_${index}_${key}`}>
+                                {getMessage(`optionApplyOnValue_${key}`)}
+                            </label>
+                        </div>
+                    {/each}
+                </div>
+
+                {#if !!error?.applyOn}
+                    <span id={`applyOn_${index}_feedback`} class="invalid-feedback d-block">{error?.applyOn}</span>
+                {/if}
             </div>
 
             <div class="col-md-9">

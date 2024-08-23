@@ -9,6 +9,7 @@ import {
   isBlank,
   isFirefox,
   isValidRegex,
+  validAppliesOn,
   validResourceTypes,
 } from '../../utils.js';
 import { alert } from '../stores/alert-store';
@@ -73,7 +74,11 @@ const save = async () => {
     }
 
     // Apply On
-    if (![ApplyOn.REQUEST, ApplyOn.RESPONSE].includes(rule.applyOn)) {
+    if (rule.applyOn.length === 0) {
+      ruleError.applyOn = getMessage('errApplyOnRequired');
+    }
+
+    if (rule.applyOn.some((type) => !validAppliesOn.has(type))) {
       ruleError.applyOn = getMessage('errApplyOnInvalid');
     }
 

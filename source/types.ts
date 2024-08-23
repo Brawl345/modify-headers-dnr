@@ -5,12 +5,13 @@ export enum ApplyOn {
 
 export interface FilterRule {
   enabled: boolean;
+  actionType: chrome.declarativeNetRequest.RuleActionType.MODIFY_HEADERS;
   filter: string;
   operation: chrome.declarativeNetRequest.HeaderOperation;
   field: string;
   value: string;
   priority: number;
-  applyOn: ApplyOn;
+  applyOn: ApplyOn[];
   resourceTypes: chrome.declarativeNetRequest.ResourceType[];
 }
 

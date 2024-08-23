@@ -54,7 +54,7 @@
     "message": "Apply on"
   },
   "optionApplyOnHelp": {
-    "message": "Where this rule should be applied on - request or response. Note that modified response headers WON'T be shown in the network tab of the devtools but they will still be applied (you can check it by e.g. modifying the Content-Security-Policy)."
+    "message": "Where this rule should be applied on - request, response or both. Note that modified response headers WON'T be shown in the network tab of the devtools but they will still be applied (you can check it by e.g. modifying the Content-Security-Policy to \"default-src 'none';\")."
   },
   "optionResourceTypes": {
     "message": "Resource Types"
@@ -134,10 +134,10 @@
   "optionResourceTypesSelectNone": {
     "message": "Select None"
   },
-  "optionApplyOnValueRequest": {
+  "optionApplyOnValue_REQUEST": {
     "message": "Request"
   },
-  "optionApplyOnValueResponse": {
+  "optionApplyOnValue_RESPONSE": {
     "message": "Response"
   },
   "optionDuplicate": {
@@ -175,6 +175,9 @@
   },
   "errPriorityInvalid": {
     "message": "Priority is invalid."
+  },
+  "errApplyOnRequired": {
+    "message": "Apply on is required."
   },
   "errApplyOnInvalid": {
     "message": "Apply on is invalid."

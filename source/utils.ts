@@ -51,11 +51,13 @@ export const constructNewRules = (
         },
         priority: rule.priority,
         action: {
-          type: chrome.declarativeNetRequest.RuleActionType.MODIFY_HEADERS,
-          requestHeaders:
-            rule.applyOn === ApplyOn.REQUEST ? headerInfo : undefined,
-          responseHeaders:
-            rule.applyOn === ApplyOn.RESPONSE ? headerInfo : undefined,
+          type: rule.actionType,
+          requestHeaders: rule.applyOn.includes(ApplyOn.REQUEST)
+            ? headerInfo
+            : undefined,
+          responseHeaders: rule.applyOn.includes(ApplyOn.RESPONSE)
+            ? headerInfo
+            : undefined,
         },
       };
     });
@@ -69,12 +71,13 @@ export const validResourceTypes = new Set(
   Object.values(chrome.declarativeNetRequest.ResourceType),
 );
 
-export const validHeaderOperations = new Set(
-  Object.values(chrome.declarativeNetRequest.HeaderOperation),
-);
+export const validAppliesOn = new Set(Object.values(ApplyOn));
 
 // always list MAIN_FRAME first
-export const resourceTypes = [
+export const resourceTypes: [
+  string,
+  chrome.declarativeNetRequest.ResourceType,
+][] = [
   ['MAIN_FRAME', chrome.declarativeNetRequest.ResourceType.MAIN_FRAME],
   ...Object.entries(chrome.declarativeNetRequest.ResourceType).filter(
     ([, value]) =>
