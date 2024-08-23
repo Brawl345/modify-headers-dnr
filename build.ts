@@ -35,6 +35,9 @@ const context = await esbuild.context({
   plugins: [
     sassPlugin({ quietDeps: true }),
     sveltePlugin({
+      compilerOptions: {
+        dev: !isProduction,
+      },
       preprocess: sveltePreprocess(),
     }),
   ],
