@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v2.1.0
 
 - Add note that modified response headers won't be shown in the browser devtools
 - Rules can be applied to both request and response
