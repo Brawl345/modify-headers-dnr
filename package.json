@@ -1,6 +1,6 @@
 {
   "name": "modify-headers-dnr",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Modify request and response headers through the DeclarativeNetRequest API",
   "type": "module",
   "keywords": ["browser", "http", "declarativenetrequest"],
