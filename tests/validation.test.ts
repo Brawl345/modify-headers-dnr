@@ -67,9 +67,9 @@ describe('validateRule', () => {
     expect(validateRule(baseRule({ applyOn: [] })).applyOn).toBe(
       'errApplyOnRequired',
     );
-    expect(
-      validateRule(baseRule({ resourceTypes: [] })).resourceTypes,
-    ).toBe('errResourceTypesRequired');
+    expect(validateRule(baseRule({ resourceTypes: [] })).resourceTypes).toBe(
+      'errResourceTypesRequired',
+    );
   });
 });
 

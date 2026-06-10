@@ -1,7 +1,7 @@
 import { browser } from 'wxt/browser';
 import { applyRules } from '../lib/dnr';
+import { migrateOptions } from '../lib/migrate';
 import { getOptions, saveOptions } from '../lib/storage';
-import { ACTION_TYPE_MODIFY_HEADERS, type ApplyOn } from '../lib/types';
 
 export default defineBackground(() => {
   browser.runtime.onInstalled.addListener(async (details) => {
@@ -17,28 +17,7 @@ export default defineBackground(() => {
 
     if (details.reason === 'update') {
       const options = await getOptions();
-      let migrationRan = false;
-
-      // v2: Added ResourceTypes
-      if (options.format === 1) {
-        options.format = 2;
-        for (const rule of options.rules) {
-          rule.resourceTypes = ['main_frame'];
-        }
-        migrationRan = true;
-      }
-
-      // v3: ApplyOn as array + ActionType
-      if (options.format === 2) {
-        options.format = 3;
-        for (const rule of options.rules) {
-          rule.actionType = ACTION_TYPE_MODIFY_HEADERS;
-          rule.applyOn = [rule.applyOn as unknown as ApplyOn];
-        }
-        migrationRan = true;
-      }
-
-      if (migrationRan) {
+      if (migrateOptions(options)) {
         await saveOptions(options);
       }
     }

@@ -185,6 +185,70 @@
   "optionHelp": {
     "message": "Hilfe"
   },
+  "optionMore": {
+    "message": "Weitere Optionen"
+  },
+  "optionExport": {
+    "message": "Exportieren"
+  },
+  "optionImport": {
+    "message": "Importieren"
+  },
+  "importDialogTitle": {
+    "message": "Regeln importieren"
+  },
+  "importHint": {
+    "message": "Importierte Regeln werden in den Editor geladen. Überprüfe sie und klicke auf Speichern, um sie anzuwenden."
+  },
+  "importChooseFile": {
+    "message": "Datei auswählen…"
+  },
+  "importNoFile": {
+    "message": "Keine Datei ausgewählt"
+  },
+  "importReplaceAll": {
+    "message": "Alle bestehenden Regeln vor dem Importieren löschen"
+  },
+  "importMaxRules": {
+    "message": "Es können bis zu $count$ Regeln auf einmal importiert werden.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "importConfirm": {
+    "message": "Importieren"
+  },
+  "importCancel": {
+    "message": "Abbrechen"
+  },
+  "importSuccess": {
+    "message": "$count$ Regel(n) importiert. Überprüfe sie und speichere, um sie anzuwenden.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "importErrorInvalidJson": {
+    "message": "Die Datei ist kein gültiges JSON."
+  },
+  "importErrorInvalidFile": {
+    "message": "Dies ist keine gültige Exportdatei."
+  },
+  "importErrorWrongApp": {
+    "message": "Diese Datei wurde nicht von dieser Erweiterung exportiert."
+  },
+  "importErrorNewerVersion": {
+    "message": "Diese Datei wurde mit einer neueren Version erstellt. Bitte aktualisiere zuerst die Erweiterung."
+  },
+  "importErrorTooLarge": {
+    "message": "Die Datei ist zu groß."
+  },
+  "importErrorTooManyRules": {
+    "message": "Die Datei enthält zu viele Regeln."
+  },
   "popupActiveRules": {
     "message": "$count$ aktive Regel(n)",
     "placeholders": {

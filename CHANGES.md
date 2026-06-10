@@ -2,6 +2,7 @@
 
 ## v3.1.0
 
+- Import/Export functionality
 - Drag to reorder rules (purely cosmetic)
 
 ## v3.0.0

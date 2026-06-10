@@ -11,11 +11,14 @@ import {
 } from 'vue';
 import HelpDialog from '../../components/HelpDialog.vue';
 import Icon from '../../components/Icon.vue';
+import ImportDialog from '../../components/ImportDialog.vue';
 import RuleCard from '../../components/RuleCard.vue';
 import ToggleSwitch from '../../components/ToggleSwitch.vue';
+import ToolbarMenu from '../../components/ToolbarMenu.vue';
 import { constructNewRules, MAX_NUMBER_OF_RULES, applyRules } from '../../lib/dnr';
 import { t } from '../../lib/i18n';
 import { getOptions, newRule, saveOptions } from '../../lib/storage';
+import { exportOptions } from '../../lib/transfer';
 import type { FilterRule, Options, RuleError } from '../../lib/types';
 import { validateRules } from '../../lib/validation';
 
@@ -34,6 +37,7 @@ const entries = ref<Entry[]>([]);
 const errors = ref<Record<number, RuleError>>({});
 const openUids = reactive(new Set<number>());
 const helpOpen = ref(false);
+const importOpen = ref(false);
 const dirty = ref(false);
 // Only true once the initial load has settled, so loading data in doesn't count
 // as a change. The deep watcher flushes asynchronously, so a plain loading flag
@@ -163,6 +167,38 @@ function remove(index: number): void {
   if (removed) openUids.delete(removed.uid);
 }
 
+function exportRules(): void {
+  const rules: FilterRule[] = structuredClone(
+    toRaw(entries.value).map((entry) => toRaw(entry.rule)),
+  );
+  const json = exportOptions({ format: format.value, enabled: enabled.value, rules });
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const date = new Date().toISOString().slice(0, 10);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `modify-headers-dnr-${date}.json`;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+// Imported rules are loaded into the editor (not persisted directly) so the user
+// reviews them and Save runs the usual validation before anything is applied.
+function onImport(payload: {
+  rules: FilterRule[];
+  replaceAll: boolean;
+}): void {
+  const imported = payload.rules.map((rule) => ({ uid: nextUid(), rule }));
+  if (payload.replaceAll) {
+    openUids.clear();
+    entries.value = imported;
+  } else {
+    entries.value.push(...imported);
+  }
+  importOpen.value = false;
+  show(t('importSuccess', String(payload.rules.length)), 'success');
+}
+
 async function save(): Promise<void> {
   // Detach the reactive proxies into plain data before persisting/applying;
   // proxies cannot be structured-cloned by the storage and DNR APIs.
@@ -224,9 +260,6 @@ async function save(): Promise<void> {
         <span>{{ t('optionGloballyEnabled') }}</span>
       </label>
       <div class="spacer"></div>
-      <button type="button" class="btn" @click="helpOpen = true">
-        {{ t('optionHelp') }}
-      </button>
       <button type="button" class="btn btn-primary" @click="addRule">
         {{ t('optionAddRule') }}
       </button>
@@ -240,6 +273,11 @@ async function save(): Promise<void> {
         {{ t('optionSave') }}
         <span v-if="dirty" class="change-dot" aria-hidden="true"></span>
       </button>
+      <ToolbarMenu
+        @export="exportRules"
+        @import="importOpen = true"
+        @help="helpOpen = true"
+      />
     </header>
 
     <main class="content">
@@ -266,6 +304,12 @@ async function save(): Promise<void> {
     </main>
 
     <HelpDialog :open="helpOpen" @close="helpOpen = false" />
+
+    <ImportDialog
+      :open="importOpen"
+      @close="importOpen = false"
+      @import="onImport"
+    />
 
     <Transition name="toast">
       <div v-if="message" class="toast" :class="message.kind">

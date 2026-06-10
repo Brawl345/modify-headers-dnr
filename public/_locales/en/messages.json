@@ -185,6 +185,70 @@
   "optionHelp": {
     "message": "Help"
   },
+  "optionMore": {
+    "message": "More options"
+  },
+  "optionExport": {
+    "message": "Export"
+  },
+  "optionImport": {
+    "message": "Import"
+  },
+  "importDialogTitle": {
+    "message": "Import Rules"
+  },
+  "importHint": {
+    "message": "Imported rules are added to the editor. Review them, then click Save to apply."
+  },
+  "importChooseFile": {
+    "message": "Choose File…"
+  },
+  "importNoFile": {
+    "message": "No file selected"
+  },
+  "importReplaceAll": {
+    "message": "Delete all existing rules before importing"
+  },
+  "importMaxRules": {
+    "message": "Up to $count$ rules can be imported at once.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "importConfirm": {
+    "message": "Import"
+  },
+  "importCancel": {
+    "message": "Cancel"
+  },
+  "importSuccess": {
+    "message": "Imported $count$ rule(s). Review and save to apply.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "importErrorInvalidJson": {
+    "message": "The file is not valid JSON."
+  },
+  "importErrorInvalidFile": {
+    "message": "This is not a valid export file."
+  },
+  "importErrorWrongApp": {
+    "message": "This file was not exported by this extension."
+  },
+  "importErrorNewerVersion": {
+    "message": "This file was created by a newer version. Please update the extension first."
+  },
+  "importErrorTooLarge": {
+    "message": "The file is too large."
+  },
+  "importErrorTooManyRules": {
+    "message": "The file contains too many rules."
+  },
   "popupActiveRules": {
     "message": "$count$ active rule(s)",
     "placeholders": {

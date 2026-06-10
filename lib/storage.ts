@@ -1,4 +1,5 @@
 import { browser } from 'wxt/browser';
+import { CURRENT_FORMAT } from './migrate';
 import {
   ACTION_TYPE_MODIFY_HEADERS,
   ApplyOn,
@@ -20,7 +21,7 @@ export const newRule = (): FilterRule => ({
 });
 
 export const defaultOptions: Options = {
-  format: 3,
+  format: CURRENT_FORMAT,
   enabled: true,
   rules: [
     {

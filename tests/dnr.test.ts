@@ -37,7 +37,9 @@ describe('constructNewRules', () => {
   });
 
   it('builds request headers only when applied on request', () => {
-    const [rule] = constructNewRules([baseRule({ applyOn: [ApplyOn.REQUEST] })]);
+    const [rule] = constructNewRules([
+      baseRule({ applyOn: [ApplyOn.REQUEST] }),
+    ]);
     expect(rule?.action.requestHeaders).toBeDefined();
     expect(rule?.action.responseHeaders).toBeUndefined();
   });

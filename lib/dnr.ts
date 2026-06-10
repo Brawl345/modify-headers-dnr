@@ -8,7 +8,8 @@ import {
 
 type DnrRule = Browser.declarativeNetRequest.Rule;
 type ModifyHeaderInfo = Browser.declarativeNetRequest.ModifyHeaderInfo;
-type ResourceTypes = Browser.declarativeNetRequest.RuleCondition['resourceTypes'];
+type ResourceTypes =
+  Browser.declarativeNetRequest.RuleCondition['resourceTypes'];
 
 interface NativeDnr {
   ResourceType?: Record<string, string>;
