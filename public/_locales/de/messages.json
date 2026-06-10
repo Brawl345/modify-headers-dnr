@@ -1,0 +1,244 @@
+{
+  "extensionName": {
+    "message": "Modify Headers DNR"
+  },
+  "extensionDescription": {
+    "message": "Ändere Request- und Response-Header über die DeclarativeNetRequest-API"
+  },
+  "optionsPageTitle": {
+    "message": "Optionen"
+  },
+  "optionGloballyEnabled": {
+    "message": "Aktiviert"
+  },
+  "optionNoRules": {
+    "message": "Noch keine Regeln. Klicke auf \"Regel hinzufügen\", um eine zu erstellen."
+  },
+  "optionEdit": {
+    "message": "Bearbeiten"
+  },
+  "optionDone": {
+    "message": "Fertig"
+  },
+  "summaryNoField": {
+    "message": "(kein Header)"
+  },
+  "summaryNoFilter": {
+    "message": "(kein URL-Muster)"
+  },
+  "summaryHasErrors": {
+    "message": "Diese Regel hat Validierungsfehler."
+  },
+  "optionEnabled": {
+    "message": "Aktiviert"
+  },
+  "optionUrlPattern": {
+    "message": "URL-Muster"
+  },
+  "optionUrlPatternHelp": {
+    "message": "Ein rein ASCII-basierter regulärer Ausdruck, um die URLs von Netzwerk-Requests zu filtern. URLs werden im Punycode-Format (für internationalisierte Domains) bereitgestellt, wobei Nicht-ASCII-Zeichen UTF-8-prozentkodiert sind."
+  },
+  "optionAction": {
+    "message": "Aktion"
+  },
+  "optionActionHelp": {
+    "message": "Die Operation, die auf den Header angewendet wird."
+  },
+  "optionActionChromeHelp": {
+    "message": "In Chromium-basierten Browsern wird \"Anhängen\" für folgende Request-Header unterstützt: Accept, Accept-Encoding, Accept-Language, Access-Control-Request-Headers, Cache-Control, Connection, Content-Language, Cookie, Forwarded, If-Match, If-None-Match, Keep-Alive, Range, Te, Trailer, Transfer-Encoding, Upgrade, Via, Want-Digest, X-Forwarded-For."
+  },
+  "optionHelpClose": {
+    "message": "Schließen"
+  },
+  "optionActionValueSet": {
+    "message": "Setzen"
+  },
+  "optionActionValueAppend": {
+    "message": "Anhängen"
+  },
+  "optionActionValueRemove": {
+    "message": "Entfernen"
+  },
+  "optionHeaderField": {
+    "message": "Header-Feld"
+  },
+  "optionHeaderValue": {
+    "message": "Header-Wert"
+  },
+  "optionPriority": {
+    "message": "Priorität"
+  },
+  "optionPriorityHelp": {
+    "message": "Priorität, in der die Regeln angewendet werden. Je niedriger die Zahl, desto höher die Priorität. Standard ist 1."
+  },
+  "optionApplyOn": {
+    "message": "Anwenden auf"
+  },
+  "optionApplyOnHelp": {
+    "message": "Worauf diese Regel angewendet werden soll – Request, Response oder beides. Beachte, dass geänderte Response-Header NICHT im Netzwerk-Tab der DevTools angezeigt werden, aber trotzdem angewendet werden (du kannst es z. B. prüfen, indem du die Content-Security-Policy auf \"default-src 'none';\" setzt)."
+  },
+  "optionResourceTypes": {
+    "message": "Ressourcen-Typen"
+  },
+  "optionResourceTypesHelp": {
+    "message": "Die Ressourcen-Typen, auf die die Regel angewendet wird."
+  },
+  "optionResourceTypesValue_MAIN_FRAME": {
+    "message": "Haupt-Frame"
+  },
+  "optionResourceTypesValue_SUB_FRAME": {
+    "message": "Unter-Frame"
+  },
+  "optionResourceTypesValue_STYLESHEET": {
+    "message": "Stylesheet"
+  },
+  "optionResourceTypesValue_SCRIPT": {
+    "message": "Skript"
+  },
+  "optionResourceTypesValue_IMAGE": {
+    "message": "Bild"
+  },
+  "optionResourceTypesValue_IMAGESET": {
+    "message": "Imageset"
+  },
+  "optionResourceTypesValue_FONT": {
+    "message": "Schriftart"
+  },
+  "optionResourceTypesValue_OBJECT": {
+    "message": "Objekt"
+  },
+  "optionResourceTypesValue_XMLHTTPREQUEST": {
+    "message": "XMLHttpRequest (AJAX)"
+  },
+  "optionResourceTypesValue_PING": {
+    "message": "Ping"
+  },
+  "optionResourceTypesValue_CSP_REPORT": {
+    "message": "CSP-Report"
+  },
+  "optionResourceTypesValue_MEDIA": {
+    "message": "Medien"
+  },
+  "optionResourceTypesValue_WEBSOCKET": {
+    "message": "WebSocket"
+  },
+  "optionResourceTypesValue_OTHER": {
+    "message": "Sonstiges"
+  },
+  "optionResourceTypesValue_OBJECT_SUBREQUEST": {
+    "message": "Objekt-Subrequest"
+  },
+  "optionResourceTypesValue_XSLT": {
+    "message": "XSLT"
+  },
+  "optionResourceTypesValue_BEACON": {
+    "message": "Beacon"
+  },
+  "optionResourceTypesValue_XML_DTD": {
+    "message": "XML-DTD"
+  },
+  "optionResourceTypesValue_WEB_MANIFEST": {
+    "message": "Web-Manifest"
+  },
+  "optionResourceTypesValue_SPECULATIVE": {
+    "message": "Spekulativ"
+  },
+  "optionResourceTypesValue_WEBBUNDLE": {
+    "message": "Web-Bundle"
+  },
+  "optionResourceTypesValue_WEBTRANSPORT": {
+    "message": "Web-Transport"
+  },
+  "optionResourceTypesValue_JSON": {
+    "message": "JSON"
+  },
+  "optionResourceTypesSelectAll": {
+    "message": "Alle auswählen"
+  },
+  "optionResourceTypesSelectNone": {
+    "message": "Keine auswählen"
+  },
+  "optionApplyOnValue_REQUEST": {
+    "message": "Request"
+  },
+  "optionApplyOnValue_RESPONSE": {
+    "message": "Response"
+  },
+  "optionDuplicate": {
+    "message": "Duplizieren"
+  },
+  "optionRemove": {
+    "message": "Entfernen"
+  },
+  "optionConfirmRemove": {
+    "message": "Sicher?"
+  },
+  "optionAddRule": {
+    "message": "Hinzufügen"
+  },
+  "optionSave": {
+    "message": "Speichern"
+  },
+  "optionUnsavedChanges": {
+    "message": "Du hast ungespeicherte Änderungen"
+  },
+  "optionHelp": {
+    "message": "Hilfe"
+  },
+  "popupActiveRules": {
+    "message": "$count$ aktive Regel(n)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "popupDisabled": {
+    "message": "Deaktiviert"
+  },
+  "popupOpenOptions": {
+    "message": "Optionen öffnen"
+  },
+  "errFilterRequired": {
+    "message": "URL-Muster ist erforderlich."
+  },
+  "errFilterInvalid": {
+    "message": "URL-Muster muss ein gültiger regulärer Ausdruck sein."
+  },
+  "errOperationInvalid": {
+    "message": "Aktion ist ungültig."
+  },
+  "errFieldRequired": {
+    "message": "Header-Feld ist erforderlich."
+  },
+  "errValueRequired": {
+    "message": "Header-Wert ist erforderlich."
+  },
+  "errPriorityTooLow": {
+    "message": "Priorität muss größer als 1 sein."
+  },
+  "errPriorityInvalid": {
+    "message": "Priorität ist ungültig."
+  },
+  "errApplyOnRequired": {
+    "message": "\"Anwenden auf\" ist erforderlich."
+  },
+  "errApplyOnInvalid": {
+    "message": "\"Anwenden auf\" ist ungültig."
+  },
+  "errResourceTypesRequired": {
+    "message": "Mindestens ein Ressourcen-Typ ist erforderlich."
+  },
+  "errResourceTypesInvalid": {
+    "message": "Ressourcen-Typen sind ungültig."
+  },
+  "errTooManyRules": {
+    "message": "Zu viele Regeln. Beachte, dass andere Erweiterungen ebenfalls Regeln hinzufügen können."
+  },
+  "successSaveOptions": {
+    "message": "Regeln erfolgreich gespeichert!"
+  },
+  "errorWhileSaving": {
+    "message": "Beim Speichern ist ein unbekannter Fehler aufgetreten."
+  }
+}

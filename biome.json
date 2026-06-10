@@ -1,10 +1,25 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
   "files": {
-    "ignore": ["public/build"]
+    "includes": [
+      "lib/**/*.ts",
+      "entrypoints/**/*.ts",
+      "components/**/*.ts",
+      "tests/**/*.ts",
+      "*.ts",
+      "**/*.json"
+    ],
+    "ignoreUnknown": true
   },
   "formatter": {
     "indentStyle": "space"
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noStaticOnlyClass": "off"
+      }
+    }
   },
   "javascript": {
     "formatter": {
@@ -15,21 +30,5 @@
     "formatter": {
       "indentStyle": "space"
     }
-  },
-  "overrides": [
-    {
-      "include": ["*.svelte"],
-      "formatter": {
-        "enabled": true
-      },
-      "linter": {
-        "rules": {
-          "style": {
-            "useConst": "off",
-            "useImportType": "off"
-          }
-        }
-      }
-    }
-  ]
+  }
 }

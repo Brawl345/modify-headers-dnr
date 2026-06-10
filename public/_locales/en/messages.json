@@ -8,6 +8,27 @@
   "optionsPageTitle": {
     "message": "Options"
   },
+  "optionGloballyEnabled": {
+    "message": "Enabled"
+  },
+  "optionNoRules": {
+    "message": "No rules yet. Click \"Add Rule\" to create one."
+  },
+  "optionEdit": {
+    "message": "Edit"
+  },
+  "optionDone": {
+    "message": "Done"
+  },
+  "summaryNoField": {
+    "message": "(no header)"
+  },
+  "summaryNoFilter": {
+    "message": "(no URL pattern)"
+  },
+  "summaryHasErrors": {
+    "message": "This rule has validation errors."
+  },
   "optionEnabled": {
     "message": "Enabled"
   },
@@ -128,6 +149,9 @@
   "optionResourceTypesValue_WEBTRANSPORT": {
     "message": "Web Transport"
   },
+  "optionResourceTypesValue_JSON": {
+    "message": "JSON"
+  },
   "optionResourceTypesSelectAll": {
     "message": "Select All"
   },
@@ -146,14 +170,34 @@
   "optionRemove": {
     "message": "Remove"
   },
+  "optionConfirmRemove": {
+    "message": "Sure?"
+  },
   "optionAddRule": {
     "message": "Add Rule"
   },
   "optionSave": {
     "message": "Save"
   },
+  "optionUnsavedChanges": {
+    "message": "You have unsaved changes"
+  },
   "optionHelp": {
     "message": "Help"
+  },
+  "popupActiveRules": {
+    "message": "$count$ active rule(s)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "popupDisabled": {
+    "message": "Disabled"
+  },
+  "popupOpenOptions": {
+    "message": "Open Options"
   },
   "errFilterRequired": {
     "message": "URL Pattern is required."

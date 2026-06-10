@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.0.0
+
+- Rewritten with Vue 3 and WXT
+- Redesigned options page: rules are shown as a compact list and expand inline for editing
+- Add a popup with a global enable/disable toggle
+- Add German translation
+
 ## v2.1.0
 
 - Add note that modified response headers won't be shown in the browser devtools

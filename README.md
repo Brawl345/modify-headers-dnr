@@ -6,12 +6,20 @@ WebExtension to modify request and response headers through the [DeclarativeNetR
 
 - Available for Firefox on [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/modify-headers-dnr/)
 
+Built with [WXT](https://wxt.dev) + Vue 3 (Manifest V3).
+
 ## Development
 
 1. `git clone ...`
 2. `npm ci`
-3. `npm run dev`
-4. `npm run start:chrome` or `npm run start:firefox`
+3. `npm run dev` (Chrome) or `npm run dev:firefox` (Firefox)
+
+Other commands:
+
+- `npm run build` / `build:firefox` — production build into `.output/`
+- `npm run zip` / `zip:firefox` — package for the store
+- `npm run lint:types`, `npm run lint:code`, `npm test`
+- `npm run release <version>` — bump version, build zips (no upload), tag and push
 
 ## Screenshots
 

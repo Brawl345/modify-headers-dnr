@@ -1,3 +1,14 @@
+export const HeaderOperation = {
+  SET: 'set',
+  APPEND: 'append',
+  REMOVE: 'remove',
+} as const;
+
+export type HeaderOperationValue =
+  (typeof HeaderOperation)[keyof typeof HeaderOperation];
+
+export const ACTION_TYPE_MODIFY_HEADERS = 'modifyHeaders';
+
 export enum ApplyOn {
   REQUEST = 'request',
   RESPONSE = 'response',
@@ -5,14 +16,14 @@ export enum ApplyOn {
 
 export interface FilterRule {
   enabled: boolean;
-  actionType: chrome.declarativeNetRequest.RuleActionType.MODIFY_HEADERS;
+  actionType: typeof ACTION_TYPE_MODIFY_HEADERS;
   filter: string;
-  operation: chrome.declarativeNetRequest.HeaderOperation;
+  operation: HeaderOperationValue;
   field: string;
   value: string;
   priority: number;
   applyOn: ApplyOn[];
-  resourceTypes: chrome.declarativeNetRequest.ResourceType[];
+  resourceTypes: string[];
 }
 
 export interface Options {
