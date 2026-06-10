@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Sortable from 'sortablejs';
 import {
   nextTick,
   onBeforeUnmount,
@@ -49,6 +50,53 @@ watch(
   },
   { deep: true },
 );
+
+let sortable: Sortable | undefined;
+
+function reorder(from: number, to: number): void {
+  const list = entries.value;
+  const [moved] = list.splice(from, 1);
+  if (moved) list.splice(to, 0, moved);
+}
+
+function setListEl(el: HTMLElement | null): void {
+  sortable?.destroy();
+  sortable = undefined;
+  if (!el) return;
+  sortable = Sortable.create(el, {
+    animation: 150,
+    delay: 400,
+    delayOnTouchOnly: true,
+    draggable: '.card',
+    // Keep clicks/typing on interactive elements from starting a drag.
+    filter: 'input, select, textarea, button, a, label',
+    preventOnFilter: false,
+    ghostClass: 'drag-ghost',
+    chosenClass: 'drag-chosen',
+    onEnd(event) {
+      const { oldIndex, newIndex, item, from } = event;
+      if (oldIndex == null || newIndex == null || oldIndex === newIndex) return;
+      // Undo Sortable's DOM mutation so Vue stays the single source of truth,
+      // then drive the change through reactive state (which re-renders + marks
+      // the form dirty via the entries watcher).
+      item.remove();
+      from.insertBefore(item, from.children[oldIndex] ?? null);
+      reorder(oldIndex, newIndex);
+    },
+  });
+}
+
+// (Re)bind Sortable whenever the rule list appears or is torn down. The list
+// only renders while there are rules, so it can come and go.
+watch(
+  () => !loading.value && entries.value.length > 0,
+  async (hasList) => {
+    await nextTick();
+    setListEl(hasList ? document.querySelector<HTMLElement>('.rule-list') : null);
+  },
+);
+
+onBeforeUnmount(() => sortable?.destroy());
 
 function onBeforeUnload(event: BeforeUnloadEvent): void {
   if (!dirty.value) return;
@@ -307,6 +355,17 @@ async function save(): Promise<void> {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+/* Faded gap left where the dragged card will land. */
+.rule-list :deep(.drag-ghost) {
+  opacity: 0.35;
+}
+
+.rule-list :deep(.drag-chosen) {
+  transform: scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+  cursor: grabbing;
 }
 
 .placeholder {

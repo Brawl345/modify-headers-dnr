@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.1.0
+
+- Drag to reorder rules (purely cosmetic)
+
 ## v3.0.0
 
 - Rewritten with Vue 3 and WXT

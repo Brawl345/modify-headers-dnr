@@ -30,6 +30,7 @@
     "release": "tsx scripts/release.ts"
   },
   "dependencies": {
+    "sortablejs": "1.15.7",
     "vue": "3.5.35"
   },
   "overrides": {
@@ -40,6 +41,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.16",
     "@types/chrome": "0.1.43",
+    "@types/sortablejs": "1.15.9",
     "@vue/test-utils": "2.4.11",
     "@wxt-dev/module-vue": "1.0.3",
     "happy-dom": "20.10.2",
